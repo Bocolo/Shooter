@@ -10,7 +10,6 @@ public class AsteroidsScript : MonoBehaviour
     
     private void Start()
     {
-       
         SpawnAsteroid();
     }
  
@@ -28,10 +27,5 @@ public class AsteroidsScript : MonoBehaviour
 
         }
     }
-    /*
-       if (asteroids[i].transform.position.y < fallY)
-                {
-                    asteroids[i].transform.position = new Vector3(Random.Range(-2.2f, 2.2f), Random.Range(6, 18));
-                }
-     */
+    
 }

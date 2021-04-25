@@ -36,4 +36,8 @@ public class AsteroidObjScript : MonoBehaviour
             fallSpeed = Random.Range(fallSpeedX, fallSpeedY);
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Asteroid has collided with something : " + collision);
+    }
 }
