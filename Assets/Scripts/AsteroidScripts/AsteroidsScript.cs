@@ -26,7 +26,7 @@ public class AsteroidsScript : MonoBehaviour
             while(!validPosition && spawnAttempts < maxSpawnAttempts)
             {
                 spawnAttempts++;
-                Debug.Log("Instantiation Attempt : " + spawnAttempts);
+             //   Debug.Log("Instantiation Attempt : " + spawnAttempts);
                 position = new Vector3(Random.Range(-2.2f, 2.2f), Random.Range(7, 30));
                 validPosition = true;
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(position, obstacleRadius);
@@ -40,7 +40,7 @@ public class AsteroidsScript : MonoBehaviour
                 }
                 if (spawnAttempts == 10 && !validPosition)
                 {
-                    Debug.Log("Spawning in overlap");
+                 //   Debug.Log("Spawning in overlap");
                 }
             }
 

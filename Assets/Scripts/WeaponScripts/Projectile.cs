@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour
     {
         //add collision/other health component
         //small/med/big asteroids requiing more projectiles
-        Debug.Log("Projectile has collided");
+      //  Debug.Log("Projectile has collided");
         
         projectileSpeed = 0;
 

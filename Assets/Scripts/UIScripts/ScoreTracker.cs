@@ -10,19 +10,14 @@ using UnityEngine.UI;
         public int score;
         public Text scoreText;
 
-    private void Awake()
+    private void Start()
     {
         score = 0;
         scoreText.text = "this is test text";  
     }
     private void LateUpdate()
         {
-        //scoreText.text = "This is the update";
-     /*   if (score > 1)
-        {
-            scoreText.text = "now";
-            Debug.Log("ScoreText is updating");
-        }*/
+     
 
             HandleScore();
         }

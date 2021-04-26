@@ -5,22 +5,17 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
-    [SerializeField] Transform shootPoint;
+ 
     [SerializeField] float speed;
-    [SerializeField] Projectile bullet;
-  
+   
+
+
     [SerializeField] [Range(0, 1)] float LerpConstant;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            Shoot();
-        }
-    }
+ 
     void FixedUpdate()
     {
 
@@ -43,14 +38,6 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector2.Lerp(rb.velocity, movement, LerpConstant) * speed;
 
 
-    }
-    private void Shoot()
-    {
-        Instantiate(bullet, shootPoint.position,Quaternion.identity);
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-      //  Debug.Log("Your spaceship has been hit");
     }
 
 }

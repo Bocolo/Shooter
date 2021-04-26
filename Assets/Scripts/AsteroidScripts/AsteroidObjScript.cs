@@ -101,14 +101,14 @@ public class AsteroidObjScript : MonoBehaviour
                 validPosition = true;
 
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(position, obstacleRadius);
-                Debug.Log("Spawn attempt:  - "+spawnAttempts+" . . . " + gameObject.name);
+               // Debug.Log("Spawn attempt:  - "+spawnAttempts+" . . . " + gameObject.name);
                 foreach (Collider2D col in colliders)
                 {
-                    Debug.Log("Collison detected - - > " + col);
+                   // Debug.Log("Collison detected - - > " + col);
                     if (col.tag == "asteroid")
                     {
                         validPosition = false;
-                        Debug.Log("overLap detected");
+                    //    Debug.Log("overLap detected");
                     }
                 }
             }
@@ -141,6 +141,6 @@ public class AsteroidObjScript : MonoBehaviour
            
         }
        
-        Debug.Log("Asteroid has collided with something : " + collision);
+      //  Debug.Log("Asteroid has collided with something : " + collision);
     }
 }
