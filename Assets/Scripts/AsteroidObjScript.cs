@@ -24,6 +24,7 @@ public class AsteroidObjScript : MonoBehaviour
     [SerializeField] GameObject activeAsteroid;
     [SerializeField] int maxSpawnAttempts = 10;
     [SerializeField] int obstacleRadius = 130;
+    [SerializeField] bool isChangeable;
   //  GameObject currentAsteroid;
     private void Start()
     {
@@ -45,28 +46,34 @@ public class AsteroidObjScript : MonoBehaviour
     
     void LateUpdate()
     {
-        if (health < 30 && largeAsteroid != null && hugeAsteroid.activeSelf)
+        if (isChangeable)
         {
-            largeAsteroid.SetActive(true);
-            hugeAsteroid.SetActive(false);
-            
-        }
+            if (health < 30 && largeAsteroid != null && hugeAsteroid.activeSelf)
+            {
+                largeAsteroid.SetActive(true);
+                hugeAsteroid.SetActive(false);
 
-        if (health < 21 && mediumAsteroid!= null  && largeAsteroid.activeSelf)
-            {
-                mediumAsteroid.SetActive( true);
-                largeAsteroid.SetActive(false);
-           
             }
-            if (health < 11 && smallAsteroid!=null && mediumAsteroid.activeSelf)
+
+            if (health < 21 && mediumAsteroid != null && largeAsteroid.activeSelf)
             {
-            smallAsteroid.SetActive( true);
-            mediumAsteroid.SetActive(false);
-            
+                mediumAsteroid.SetActive(true);
+                largeAsteroid.SetActive(false);
+
+            }
+            if (health < 11 && smallAsteroid != null && mediumAsteroid.activeSelf)
+            {
+                smallAsteroid.SetActive(true);
+                mediumAsteroid.SetActive(false);
+
+            }
         }
         if (health <= 0)
         {
-            smallAsteroid.SetActive(false);
+            if (isChangeable)
+            {
+                smallAsteroid.SetActive(false);
+            }
             hasExploded = true;
             scoreTracker.score += scoreForDestruction;
         }

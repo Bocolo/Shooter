@@ -26,13 +26,15 @@ public class AsteroidsScript : MonoBehaviour
             while(!validPosition && spawnAttempts < maxSpawnAttempts)
             {
                 spawnAttempts++;
-                position = new Vector3(Random.Range(-2.2f, 2.2f), Random.Range(7, 21));
+                Debug.Log("Instantiation Attempt : " + spawnAttempts);
+                position = new Vector3(Random.Range(-2.2f, 2.2f), Random.Range(7, 30));
                 validPosition = true;
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(position, obstacleRadius);
                 foreach(Collider2D col in colliders)
                 {
                     if (col.tag == "asteroid")
                     {
+
                         validPosition = false;
                     }
                 }
