@@ -11,11 +11,13 @@ public class PowerUpSpawner : MonoBehaviour
 
     int targetScoreSwitcher;
     int targetScoreLarger;
+    public int powerUpSpawnCount;
 
     private void Start()
     {
-        targetScoreSwitcher = 60;
-        targetScoreLarger = 90;
+        powerUpSpawnCount = 0;
+        targetScoreSwitcher = 40;
+        targetScoreLarger = 54;
       //  Debug.Log("Score tracker score in spawner is: " + scoreTracker.score);
     }
     private void Update()
@@ -23,14 +25,16 @@ public class PowerUpSpawner : MonoBehaviour
         if (scoreTracker.score >= targetScoreSwitcher)
         {
          //   Debug.Log("Score tracker score is greater than target: " + scoreTracker.score);
-            targetScoreSwitcher += 60;
+            targetScoreSwitcher += targetScoreSwitcher;
             SpawnPowerUp(shooterSwitcher);
+            powerUpSpawnCount++;
         }
         if (scoreTracker.score >= targetScoreLarger)
         {
         //    Debug.Log("Score tracker score is greater than target: " + scoreTracker.score);
-            targetScoreLarger += 90;
+            targetScoreLarger += targetScoreLarger;
             SpawnPowerUp(largerShooter);
+            powerUpSpawnCount++;
         }
     }
     void SpawnPowerUp(GameObject powerUp)

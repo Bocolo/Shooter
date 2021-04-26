@@ -13,16 +13,15 @@ public class Player : MonoBehaviour
     [SerializeField] Projectile bulletLargeBlue;
     public bool isShootingCenter = true;
     public bool isShootingLargeBullet = false;
-    float timer = 0;
-    float seconds = 7;
-    /*
-     Whats next--->
-    adding powerup changing which shooter and damage
-     
-     */
+    public bool isShootingDisabled = false;
+    float shootingDisablerTimer = 0;
+    float powerUpTimer = 0;
+    float powerUpSeconds = 7;
+    float shootingDisablerSeconds = 2;
+  
     private void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && !isShootingDisabled)
         {
             if (isShootingCenter)
             {
@@ -47,18 +46,25 @@ public class Player : MonoBehaviour
         }
         if (!isShootingCenter || isShootingLargeBullet)
         {
-           // Debug.Log("Timer before first reset is : " + timer);
-           // timer = 0;
-           // Debug.Log("Timer before rising above seconds reset is : " + timer);
-            timer += Time.deltaTime;
+
+            powerUpTimer += Time.deltaTime;
           
-            if (timer > seconds)
+            if (powerUpTimer > powerUpSeconds)
             {
           
                 isShootingCenter = true;
                 isShootingLargeBullet = false;
-                timer = 0;
+                powerUpTimer = 0;
           
+            }
+        }
+        if (isShootingDisabled)
+        {
+            shootingDisablerTimer += Time.deltaTime;
+            if(shootingDisablerTimer> shootingDisablerSeconds)
+            {
+                isShootingDisabled = false;
+                shootingDisablerTimer = 0;
             }
         }
     }
@@ -78,6 +84,10 @@ public class Player : MonoBehaviour
         {
             isShootingLargeBullet = true;
             isShootingCenter = true;
+        }
+        if (collision.gameObject.tag == "DisableShooting")
+        {
+            isShootingDisabled = true;
         }
     }
  
