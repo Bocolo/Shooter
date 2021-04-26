@@ -19,7 +19,7 @@ public class AsteroidsScript : MonoBehaviour
         
         for (int i = 0; i < asteroids.Length; i++)
         {
-            Vector3 position = Vector3.zero;
+            Vector2 position = Vector2.zero;
             bool validPosition = false;
             int spawnAttempts = 0;
             
@@ -27,7 +27,7 @@ public class AsteroidsScript : MonoBehaviour
             {
                 spawnAttempts++;
              
-                position = new Vector3(Random.Range(-2.2f, 2.2f), Random.Range(7, 30));
+                position = new Vector2(Random.Range(-2.2f, 2.2f), Random.Range(7, 30));
                 validPosition = true;
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(position, obstacleRadius);
                 foreach(Collider2D col in colliders)

@@ -12,7 +12,7 @@ public class PowerUp : MonoBehaviour
     private void Update()
     {
 
-        transform.Translate(Vector3.down * fallSpeed * Time.deltaTime, Space.World);
+        transform.Translate(Vector2.down * fallSpeed * Time.deltaTime, Space.World);
        
         if(transform.position.y < fallY)
         {

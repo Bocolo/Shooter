@@ -79,7 +79,7 @@ public class AsteroidObjScript : MonoBehaviour
         }
         
         transform.Rotate(0, 0, rotationDeg * Time.deltaTime);
-        transform.Translate(Vector3.down * fallSpeed * Time.deltaTime, Space.World);
+        transform.Translate(Vector2.down * fallSpeed * Time.deltaTime, Space.World);
         if(transform.position.y < fallY || hasExploded)
         {
             //sprite renderers were not deactivating every time - Update
@@ -90,14 +90,14 @@ public class AsteroidObjScript : MonoBehaviour
             // gameObject.SetActive(true);
             hasExploded = false;
            
-            Vector3 position = Vector3.zero;
+            Vector2 position = Vector2.zero;
             bool validPosition = false;
             int spawnAttempts = 0;
 
             while (!validPosition && spawnAttempts < maxSpawnAttempts)
             {
                 spawnAttempts++;
-                position = new Vector3(Random.Range(-2.2f, 2.2f), Random.Range(6, 20));
+                position = new Vector2(Random.Range(-2.2f, 2.2f), Random.Range(6, 20));
                 validPosition = true;
 
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(position, obstacleRadius);
