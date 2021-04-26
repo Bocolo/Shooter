@@ -6,13 +6,15 @@ public class DisableShootSpawner : MonoBehaviour
 {
    [SerializeField] GameObject shootDisabler;
     PowerUpSpawner powerUpSpawner;
-    int targetScoreToDisable;
+    int targetScoreToDisable = 1;
     float timer;
     int waitForSecs = 2;
+    int scoreIncreaser;
     private void Start()
     {
         timer = 0;
-        targetScoreToDisable = 1;
+        //targetScoreToDisable ;
+        scoreIncreaser = targetScoreToDisable;
         powerUpSpawner = GetComponent<PowerUpSpawner>();
     }
     private void Update()
@@ -26,7 +28,7 @@ public class DisableShootSpawner : MonoBehaviour
                 SpawnDisabler();
                 SpawnDisabler();
                 timer = 0;
-                targetScoreToDisable += targetScoreToDisable;
+                targetScoreToDisable += scoreIncreaser;
             }
         }
       /*  if (powerUpSpawner.powerUpSpawnCount ==1)
@@ -36,7 +38,7 @@ public class DisableShootSpawner : MonoBehaviour
     }
     void SpawnDisabler()
     {
-        Vector2 position = new Vector2(Random.Range(-2.2f, 2.2f), Random.Range(5,7));
+        Vector2 position = new Vector2(Random.Range(-2.2f, 2.2f), Random.Range(5,11));
         Instantiate(shootDisabler, position, Quaternion.identity);
     }
 }

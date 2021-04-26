@@ -8,6 +8,7 @@ public class AsteroidsScript : MonoBehaviour
     public GameObject[] asteroids;
     public int maxSpawnAttempts = 10;
     [SerializeField] int obstacleRadius =3;
+
     
     private void Start()
     {

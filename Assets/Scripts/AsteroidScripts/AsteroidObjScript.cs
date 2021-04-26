@@ -14,6 +14,7 @@ public class AsteroidObjScript : MonoBehaviour
     public float littleDeg;
     int healthReset;
     bool hasExploded =false;
+    [SerializeField] bool getsBigger;
     [SerializeField] int scoreForDestruction; 
     [SerializeField] ScoreTracker scoreTracker ;
     [SerializeField] int health;
@@ -50,6 +51,7 @@ public class AsteroidObjScript : MonoBehaviour
         {
             if (health < 30 && largeAsteroid != null && hugeAsteroid.activeSelf)
             {
+
                 largeAsteroid.SetActive(true);
                 hugeAsteroid.SetActive(false);
 
@@ -68,6 +70,7 @@ public class AsteroidObjScript : MonoBehaviour
 
             }
         }
+
         if (health <= 0)
         {
             if (isChangeable)
