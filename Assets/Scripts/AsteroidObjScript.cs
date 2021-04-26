@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AsteroidObjScript : MonoBehaviour
 {
-    int fallY;
+    [SerializeField]int fallY= -6;
     float fallSpeed;
     public float fallSpeedX;
     public float fallSpeedY;
@@ -22,12 +22,14 @@ public class AsteroidObjScript : MonoBehaviour
     [SerializeField] GameObject largeAsteroid;
     [SerializeField] GameObject hugeAsteroid;
     [SerializeField] GameObject activeAsteroid;
+    [SerializeField] int maxSpawnAttempts = 10;
+    [SerializeField] int obstacleRadius = 130;
   //  GameObject currentAsteroid;
     private void Start()
     {
       //  gameObject.SetActive(true);
         healthReset = health;
-        fallY = -9;
+        //fallY ;
         fallSpeed = Random.Range(fallSpeedX,fallSpeedY);
         if (Random.value < 0.5f)
         {
@@ -41,26 +43,26 @@ public class AsteroidObjScript : MonoBehaviour
     }
 
     
-    void Update()
+    void LateUpdate()
     {
         if (health < 30 && largeAsteroid != null && hugeAsteroid.activeSelf)
         {
             largeAsteroid.SetActive(true);
             hugeAsteroid.SetActive(false);
-            Debug.Log("checking health under 30");
+            
         }
 
         if (health < 21 && mediumAsteroid!= null  && largeAsteroid.activeSelf)
             {
                 mediumAsteroid.SetActive( true);
                 largeAsteroid.SetActive(false);
-            Debug.Log("checking health under 20");
+           
             }
             if (health < 11 && smallAsteroid!=null && mediumAsteroid.activeSelf)
             {
             smallAsteroid.SetActive( true);
             mediumAsteroid.SetActive(false);
-            Debug.Log("checking health under 10");
+            
         }
         if (health <= 0)
         {
@@ -73,12 +75,55 @@ public class AsteroidObjScript : MonoBehaviour
         transform.Translate(Vector3.down * fallSpeed * Time.deltaTime, Space.World);
         if(transform.position.y < fallY || hasExploded)
         {
+            //sprite renderers were not deactivating every time - Update
+            smallAsteroid.SetActive(false);
+            mediumAsteroid.SetActive(false);
+            largeAsteroid.SetActive(false);
+            hugeAsteroid.SetActive(false);
             // gameObject.SetActive(true);
             hasExploded = false;
-            activeAsteroid.SetActive(true);
+           
+            Vector3 position = Vector3.zero;
+            bool validPosition = false;
+            int spawnAttempts = 0;
+
+            while (!validPosition && spawnAttempts < maxSpawnAttempts)
+            {
+                spawnAttempts++;
+                position = new Vector3(Random.Range(-2.2f, 2.2f), Random.Range(6, 20));
+                validPosition = true;
+
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(position, obstacleRadius);
+                Debug.Log("Spawn attempt:  - "+spawnAttempts+" . . . " + gameObject.name);
+                foreach (Collider2D col in colliders)
+                {
+                    Debug.Log("Collison detected - - > " + col);
+                    if (col.tag == "asteroid")
+                    {
+                        validPosition = false;
+                        Debug.Log("overLap detected");
+                    }
+                }
+            }
+
+            // Vector3 position = new Vector3(Random.Range(-2.2f, 2.2f), Random.Range(7, 21));
+
+            // Instantiate(asteroids[i], position, Quaternion.identity);
+          /*  if (validPosition)
+            {*/
+                transform.position = position;
+                activeAsteroid.SetActive(true);
+            
+           
             health = healthReset;
-            transform.position = new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(6, 20));
+
             fallSpeed = Random.Range(fallSpeedX, fallSpeedY);
+
+
+
+
+
+            //   transform.position = new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(6, 20));
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
