@@ -10,7 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField] Transform shootPointRight;
     [SerializeField] Projectile bulletBlue;
     [SerializeField] Projectile bulletRed;
-    [SerializeField] bool isShootingCenter = true;
+    public bool isShootingCenter = true;
+    float timer = 0;
+    float seconds = 8;
     /*
      Whats next--->
     adding powerup changing which shooter and damage
@@ -33,6 +35,15 @@ public class Player : MonoBehaviour
         {
             ShootSides();
         }
+        if (!isShootingCenter)
+        {
+            timer += Time.deltaTime;
+            if (timer > seconds)
+            {
+                isShootingCenter = true;
+                timer = 0;
+            }
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -40,6 +51,10 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "asteroid")
         {
             Die();
+        }
+        if (collision.gameObject.tag == "shooterSwitch")
+        {
+            isShootingCenter = false;
         }
     }
  

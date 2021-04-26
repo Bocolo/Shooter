@@ -113,11 +113,7 @@ public class AsteroidObjScript : MonoBehaviour
                 }
             }
 
-            // Vector3 position = new Vector3(Random.Range(-2.2f, 2.2f), Random.Range(7, 21));
-
-            // Instantiate(asteroids[i], position, Quaternion.identity);
-          /*  if (validPosition)
-            {*/
+          
                 transform.position = position;
                 activeAsteroid.SetActive(true);
             
@@ -127,10 +123,6 @@ public class AsteroidObjScript : MonoBehaviour
             fallSpeed = Random.Range(fallSpeedX, fallSpeedY);
 
 
-
-
-
-            //   transform.position = new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(6, 20));
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
