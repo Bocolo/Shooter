@@ -6,9 +6,14 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField]float projectileSpeed = 1f;
     [SerializeField] GameObject hitEffect = null;
+    [SerializeField] float aboveScreenView;
     private void Update()
     {
-        transform.Translate(Vector2.down *projectileSpeed *Time.deltaTime);
+        transform.Translate(Vector2.up *projectileSpeed *Time.deltaTime);
+        if (transform.position.y >= aboveScreenView)
+        {
+            Destroy(gameObject);
+        }
     }
 
 

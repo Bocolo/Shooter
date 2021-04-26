@@ -19,7 +19,7 @@ public class AsteroidsScript : MonoBehaviour
         for (int i = 0; i < asteroids.Length; i++)
         {
 
-            Vector3 position = new Vector3(Random.Range(-2.2f, 2.2f), Random.Range(6, 14));
+            Vector3 position = new Vector3(Random.Range(-2.2f, 2.2f), Random.Range(7, 21));
             Instantiate(asteroids[i], position, Quaternion.identity);
          
 
