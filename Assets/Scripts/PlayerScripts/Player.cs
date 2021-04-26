@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] Projectile bulletRed;
     public bool isShootingCenter = true;
     float timer = 0;
-    float seconds = 8;
+    float seconds = 7;
     /*
      Whats next--->
     adding powerup changing which shooter and damage
