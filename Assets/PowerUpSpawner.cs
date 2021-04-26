@@ -5,29 +5,39 @@ using UnityEngine;
 public class PowerUpSpawner : MonoBehaviour
 {
    [SerializeField] GameObject shooterSwitcher;
+    [SerializeField] GameObject largerShooter;
     [SerializeField] ScoreTracker scoreTracker;
 
-    int targetScore;
+
+    int targetScoreSwitcher;
+    int targetScoreLarger;
 
     private void Start()
     {
-        targetScore = 50;
-        Debug.Log("Score tracker score in spawner is: " + scoreTracker.score);
+        targetScoreSwitcher = 60;
+        targetScoreLarger = 90;
+      //  Debug.Log("Score tracker score in spawner is: " + scoreTracker.score);
     }
     private void Update()
     {
-        if (scoreTracker.score >= targetScore)
+        if (scoreTracker.score >= targetScoreSwitcher)
         {
-            Debug.Log("Score tracker score is greater than target: " + scoreTracker.score);
-            targetScore += 50;
-            SpawnPowerUp();
+         //   Debug.Log("Score tracker score is greater than target: " + scoreTracker.score);
+            targetScoreSwitcher += 60;
+            SpawnPowerUp(shooterSwitcher);
+        }
+        if (scoreTracker.score >= targetScoreLarger)
+        {
+        //    Debug.Log("Score tracker score is greater than target: " + scoreTracker.score);
+            targetScoreLarger += 90;
+            SpawnPowerUp(largerShooter);
         }
     }
-    void SpawnPowerUp()
+    void SpawnPowerUp(GameObject powerUp)
     {
-        Debug.Log("Spawning powerUp");
+    //    Debug.Log("Spawning powerUp: "+powerUp);
         Vector3 position = new Vector3(Random.Range(-2.2f, 2.2f),7);
-        Instantiate(shooterSwitcher, position, Quaternion.identity );
+        Instantiate(powerUp, position, Quaternion.identity );
     }
 
 

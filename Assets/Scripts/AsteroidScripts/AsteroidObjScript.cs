@@ -127,9 +127,14 @@ public class AsteroidObjScript : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<Projectile>())
+        if(collision.gameObject.tag == "Projectile")
         {
-            health -= 5;
+            int damage = collision.gameObject.GetComponent<Projectile>().projectileDamage;
+            health -= damage;
+        //    Debug.Log("Health is being decreased by : " + damage + ".  Health is now :" + health);
+
+            //if(collision.gameObject.name == "PowerUpBigShooter") { }
+           // health -= 5;
            
         }
        

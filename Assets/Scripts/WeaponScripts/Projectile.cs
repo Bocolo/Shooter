@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField]float projectileSpeed = 1f;
     [SerializeField] GameObject hitEffect = null;
     [SerializeField] float aboveScreenView;
+    public int projectileDamage =5;
     private void Update()
     {
         transform.Translate(Vector2.up *projectileSpeed *Time.deltaTime);

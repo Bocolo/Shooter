@@ -6,6 +6,8 @@ TagManager:
   tags:
   - asteroid
   - shooterSwitch
+  - Projectile
+  - PowerUp
   layers:
   - Default
   - TransparentFX

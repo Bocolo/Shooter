@@ -10,7 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField] Transform shootPointRight;
     [SerializeField] Projectile bulletBlue;
     [SerializeField] Projectile bulletRed;
+    [SerializeField] Projectile bulletLargeBlue;
     public bool isShootingCenter = true;
+    public bool isShootingLargeBullet = false;
     float timer = 0;
     float seconds = 7;
     /*
@@ -24,24 +26,39 @@ public class Player : MonoBehaviour
         {
             if (isShootingCenter)
             {
-                ShootCenter();
+                if (isShootingLargeBullet)
+                {
+                    ShootCenter(bulletLargeBlue);
+                }
+                else
+                {
+                    ShootCenter(bulletBlue);
+                }
             }
             else
             {
                 ShootSides();
             }
         }
+       
         if (Input.GetKeyDown(KeyCode.X))
         {
             ShootSides();
         }
-        if (!isShootingCenter)
+        if (!isShootingCenter || isShootingLargeBullet)
         {
+           // Debug.Log("Timer before first reset is : " + timer);
+           // timer = 0;
+           // Debug.Log("Timer before rising above seconds reset is : " + timer);
             timer += Time.deltaTime;
+          
             if (timer > seconds)
             {
+          
                 isShootingCenter = true;
+                isShootingLargeBullet = false;
                 timer = 0;
+          
             }
         }
     }
@@ -55,6 +72,12 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "shooterSwitch")
         {
             isShootingCenter = false;
+            isShootingLargeBullet = false;
+        }
+        if (collision.gameObject.tag == "PowerUp")
+        {
+            isShootingLargeBullet = true;
+            isShootingCenter = true;
         }
     }
  
@@ -64,13 +87,15 @@ public class Player : MonoBehaviour
         isDead = true;
      //   Debug.Log("You have Died");
     }
-    private void ShootCenter()
+    private void ShootCenter(Projectile bullet)
     {
-        Instantiate(bulletBlue, shootPointCenter.position, Quaternion.identity);
+        Instantiate(bullet, shootPointCenter.position, Quaternion.identity);
     }
     private void ShootSides()
     {
         Debug.Log("Shooting From sides");
+       // Instantiate(bulletRed, shootPointCenter.position, Quaternion.identity);
+
         Instantiate(bulletRed, shootPointLeft.position, Quaternion.identity);
         Instantiate(bulletRed, shootPointRight.position, Quaternion.identity);
     }
