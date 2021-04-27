@@ -11,4 +11,8 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(1);
 
     }
+    public void ReturnToIntro()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

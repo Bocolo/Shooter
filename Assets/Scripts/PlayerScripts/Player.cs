@@ -23,6 +23,10 @@ namespace Shooter.Player
         float powerUpSeconds = 7;
         float shootingDisablerSeconds = 2;
 
+        private void Awake()
+        {
+            isDead = false;
+        }
         private void Update()
         {
             if (Input.GetKeyDown("space") && !isShootingDisabled)
