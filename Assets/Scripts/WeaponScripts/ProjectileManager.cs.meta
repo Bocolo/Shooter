@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: ba2a621449211fb429b06cde1f8c31bf
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - smallRedProjectilToPool: {fileID: 5243259260839812019, guid: c603681945120244c81464d80a8e5eab,
+      type: 3}
+  - smallBlueProjectilToPool: {fileID: 7550607077780310376, guid: 0a81b9d5df66f6047bb3db16611f0580,
+      type: 3}
+  - largeBlueProjectilToPool: {fileID: 3306367190628310816, guid: 0d59bbdb95b70414c8651f17cf807625,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

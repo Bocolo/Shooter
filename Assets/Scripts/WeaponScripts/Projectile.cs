@@ -13,7 +13,8 @@ public class Projectile : MonoBehaviour
         transform.Translate(Vector2.up *projectileSpeed *Time.deltaTime);
         if (transform.position.y >= aboveScreenView)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
     }
 
@@ -21,14 +22,14 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        projectileSpeed = 0;
+       // projectileSpeed = 0;
 
         if (hitEffect != null)
         {
             Instantiate(hitEffect,transform.position,transform.rotation);
         }
 
-        
-        Destroy(gameObject); 
+        gameObject.SetActive(false);
+        //Destroy(gameObject); 
     }
 }

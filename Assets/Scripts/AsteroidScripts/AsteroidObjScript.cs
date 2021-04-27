@@ -16,7 +16,7 @@ public class AsteroidObjScript : MonoBehaviour
     [SerializeField] float bigDeg;
     [SerializeField] float littleDeg;
     float rotationDeg;
-    [SerializeField] int scoreForDestruction;
+    [SerializeField] int scoreForDestruction=1;
     [SerializeField] int health;
     [SerializeField] int maxSpawnAttempts = 10;
     [SerializeField] int obstacleRadius = 130;
@@ -91,8 +91,11 @@ public class AsteroidObjScript : MonoBehaviour
             {
                 smallAsteroid.SetActive(false);
             }
-            hasExploded = true;
             scoreTracker.score += scoreForDestruction;
+            hasExploded = true;
+            Debug.Log(" This has exploded :    -score fro destruction ; "+ scoreForDestruction);
+            
+            
         }
         
         transform.Rotate(0, 0, rotationDeg * Time.deltaTime);
