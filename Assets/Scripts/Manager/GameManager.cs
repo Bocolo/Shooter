@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     bool gameHasEnded = false;
     public float restartDelay = 2f;
+    public int score =0;
     private void Awake()
     {
         if (instance == null)

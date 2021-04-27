@@ -92,7 +92,8 @@ public class AsteroidObjScript : MonoBehaviour
             {
                 smallAsteroid.SetActive(false);
             }
-            scoreTracker.score += scoreForDestruction;
+           // scoreTracker.score += scoreForDestruction;
+            GameManager.instance.score += scoreForDestruction;
             hasExploded = true;
             Debug.Log(" This has exploded :    -score fro destruction ; "+ scoreForDestruction);
             
