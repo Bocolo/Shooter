@@ -29,7 +29,7 @@ public class AsteroidsScript : MonoBehaviour
             {
                 spawnAttempts++;
 
-                position = AsteroidSpace.RandomPosition(2.2f, 7, 30);
+                position = AsteroidSpace.RandomPosition(2.4f, 7, 30);
                     // new Vector2(Random.Range(-2.2f, 2.2f), Random.Range(7, 30));
               
                 validPosition = AsteroidSpace.CheckOverlap(position, obstacleRadius);

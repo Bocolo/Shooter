@@ -24,13 +24,13 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
 
-        if (transform.position.x <= -2.2f)
+        if (transform.position.x <= -2.4f)
         {
-            transform.position = new Vector2(-2.2f, transform.position.y);
+            transform.position = new Vector2(-2.4f, transform.position.y);
         }
-        else if (transform.position.x >= 2.2f)
+        else if (transform.position.x >= 2.4f)
         {
-            transform.position = new Vector2(2.2f, transform.position.y);
+            transform.position = new Vector2(2.4f, transform.position.y);
         }
 
         float h = Input.GetAxisRaw("Horizontal");

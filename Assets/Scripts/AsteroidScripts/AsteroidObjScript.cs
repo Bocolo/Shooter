@@ -7,27 +7,29 @@ using Shooter.Spawning;
 public class AsteroidObjScript : MonoBehaviour
 {
     [SerializeField]int fallY= -6;
-    float fallSpeed;
-    public float fallSpeedX;
-    public float fallSpeedY;
-    public float rotationDeg;
-    public float bigDeg;
-    public float littleDeg;
-    int healthReset;
-    bool hasExploded =false;
-    [SerializeField] bool getsBigger;
-    [SerializeField] int scoreForDestruction; 
-    [SerializeField] ScoreTracker scoreTracker ;
+    [SerializeField] float maxSpawnY = 30;
+    [SerializeField] float minSpawnY = 6;
+    [SerializeField] float spawnX = 2.4f;
+    [SerializeField] float fallSpeedX;
+    [SerializeField] float fallSpeedY;
+    float fallSpeed;    
+    [SerializeField] float bigDeg;
+    [SerializeField] float littleDeg;
+    float rotationDeg;
+    [SerializeField] int scoreForDestruction;
     [SerializeField] int health;
+    [SerializeField] int maxSpawnAttempts = 10;
+    [SerializeField] int obstacleRadius = 130;
+    [SerializeField] ScoreTracker scoreTracker ;    
     [SerializeField] GameObject smallAsteroid;
     [SerializeField] GameObject mediumAsteroid;
     [SerializeField] GameObject largeAsteroid;
     [SerializeField] GameObject hugeAsteroid;
-    [SerializeField] GameObject activeAsteroid;
-    [SerializeField] int maxSpawnAttempts = 10;
-    [SerializeField] int obstacleRadius = 130;
+    [SerializeField] GameObject activeAsteroid;    
     [SerializeField] bool isChangeable;
-  
+    [SerializeField] bool getsBigger;
+    bool hasExploded = false;
+    int healthReset;
     private void Start()
     {
      
@@ -111,7 +113,7 @@ public class AsteroidObjScript : MonoBehaviour
             while (!validPosition && spawnAttempts < maxSpawnAttempts)
             {
                 spawnAttempts++;
-                position = AsteroidSpace.RandomPosition(2.2f,6,20);
+                position = AsteroidSpace.RandomPosition(spawnX,minSpawnY,maxSpawnY);
                 validPosition = AsteroidSpace.CheckOverlap(position,obstacleRadius);
             }
              transform.position = position;
