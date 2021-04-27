@@ -40,10 +40,7 @@ public class Player : MonoBehaviour
             }
         }
        
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            ShootSides();
-        }
+       
         if (!isShootingCenter || isShootingLargeBullet)
         {
 
@@ -70,7 +67,7 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-      //  Debug.Log("Trigger on Mainship Detected");
+     ;
         if (collision.gameObject.tag == "asteroid")
         {
             Die();
@@ -95,7 +92,6 @@ public class Player : MonoBehaviour
     void Die()
     {
         isDead = true;
-     //   Debug.Log("You have Died");
     }
     private void ShootCenter(Projectile bullet)
     {
@@ -104,7 +100,7 @@ public class Player : MonoBehaviour
     private void ShootSides()
     {
         Debug.Log("Shooting From sides");
-       // Instantiate(bulletRed, shootPointCenter.position, Quaternion.identity);
+      
 
         Instantiate(bulletRed, shootPointLeft.position, Quaternion.identity);
         Instantiate(bulletRed, shootPointRight.position, Quaternion.identity);

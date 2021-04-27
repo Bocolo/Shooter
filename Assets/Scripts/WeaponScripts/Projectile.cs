@@ -21,10 +21,6 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //add collision/other health component
-        //small/med/big asteroids requiing more projectiles
-      //  Debug.Log("Projectile has collided");
-        
         projectileSpeed = 0;
 
         if (hitEffect != null)

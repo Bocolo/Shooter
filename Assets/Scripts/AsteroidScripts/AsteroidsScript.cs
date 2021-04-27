@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Shooter.Spawning;
 
 public class AsteroidsScript : MonoBehaviour
 {
@@ -27,28 +28,29 @@ public class AsteroidsScript : MonoBehaviour
             while(!validPosition && spawnAttempts < maxSpawnAttempts)
             {
                 spawnAttempts++;
-             
-                position = new Vector2(Random.Range(-2.2f, 2.2f), Random.Range(7, 30));
-                validPosition = true;
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(position, obstacleRadius);
-                foreach(Collider2D col in colliders)
-                {
-                    if (col.tag == "asteroid")
-                    {
 
-                        validPosition = false;
-                    }
-                }
-             
+                position = AsteroidSpace.RandomPosition(2.2f, 7, 30);
+                    // new Vector2(Random.Range(-2.2f, 2.2f), Random.Range(7, 30));
+              
+                validPosition = AsteroidSpace.CheckOverlap(position, obstacleRadius);
             }
-
-            
                 Instantiate(asteroids[i], position, Quaternion.identity);
-
-            
-
-
-        }
+            }
     }
     
 }
+/* 
+ *   //  validPosition = true;
+ * Collider2D[] colliders = Physics2D.OverlapCircleAll(position, obstacleRadius);
+             foreach(Collider2D col in colliders)
+             {
+                 if (col.tag == "asteroid")
+                 {
+
+                     validPosition = false;
+                 }
+             }*/
+
+
+
+

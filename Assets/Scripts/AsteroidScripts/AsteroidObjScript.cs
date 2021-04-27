@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Shooter.Spawning;
 
 
 public class AsteroidObjScript : MonoBehaviour
@@ -26,12 +27,11 @@ public class AsteroidObjScript : MonoBehaviour
     [SerializeField] int maxSpawnAttempts = 10;
     [SerializeField] int obstacleRadius = 130;
     [SerializeField] bool isChangeable;
-  //  GameObject currentAsteroid;
+  
     private void Start()
     {
-      //  gameObject.SetActive(true);
+     
         healthReset = health;
-        //fallY ;
         fallSpeed = Random.Range(fallSpeedX,fallSpeedY);
         if (Random.value < 0.5f)
         {
@@ -41,36 +41,48 @@ public class AsteroidObjScript : MonoBehaviour
         {
             rotationDeg= Random.Range(littleDeg, bigDeg);
         }
-        //scoreTracker = new ScoreTracker();
+
     }
 
-    
+
+   
     void LateUpdate()
     {
-        if (isChangeable)
+        if (isChangeable && !getsBigger)
         {
-            if (health < 30 && largeAsteroid != null && hugeAsteroid.activeSelf)
+            if (health < 30  && hugeAsteroid.activeSelf)
             {
-
-                largeAsteroid.SetActive(true);
-                hugeAsteroid.SetActive(false);
+                ActivateAsteroid(largeAsteroid, hugeAsteroid);
+           /*     largeAsteroid.SetActive(true);
+                hugeAsteroid.SetActive(false);*/
 
             }
 
-            if (health < 21 && mediumAsteroid != null && largeAsteroid.activeSelf)
+            if (health < 21  && largeAsteroid.activeSelf)
             {
-                mediumAsteroid.SetActive(true);
+                ActivateAsteroid(mediumAsteroid, largeAsteroid);
+              /*  mediumAsteroid.SetActive(true);
                 largeAsteroid.SetActive(false);
-
+*/
             }
-            if (health < 11 && smallAsteroid != null && mediumAsteroid.activeSelf)
+            if (health < 11  && mediumAsteroid.activeSelf)
             {
-                smallAsteroid.SetActive(true);
-                mediumAsteroid.SetActive(false);
+
+                ActivateAsteroid(smallAsteroid, mediumAsteroid);
+               /* smallAsteroid.SetActive(true);
+                mediumAsteroid.SetActive(false);*/
 
             }
         }
+        if (getsBigger)
+        {
+            if (health < 11 && smallAsteroid.activeSelf)
+            {
+                ActivateAsteroid(mediumAsteroid, smallAsteroid);
+               }
 
+        
+        }
         if (health <= 0)
         {
             if (isChangeable)
@@ -85,12 +97,11 @@ public class AsteroidObjScript : MonoBehaviour
         transform.Translate(Vector2.down * fallSpeed * Time.deltaTime, Space.World);
         if(transform.position.y < fallY || hasExploded)
         {
-            //sprite renderers were not deactivating every time - Update
             smallAsteroid.SetActive(false);
             mediumAsteroid.SetActive(false);
             largeAsteroid.SetActive(false);
             hugeAsteroid.SetActive(false);
-            // gameObject.SetActive(true);
+          
             hasExploded = false;
            
             Vector2 position = Vector2.zero;
@@ -100,10 +111,48 @@ public class AsteroidObjScript : MonoBehaviour
             while (!validPosition && spawnAttempts < maxSpawnAttempts)
             {
                 spawnAttempts++;
-                position = new Vector2(Random.Range(-2.2f, 2.2f), Random.Range(6, 20));
-                validPosition = true;
+                position = AsteroidSpace.RandomPosition(2.2f,6,20);
+                validPosition = AsteroidSpace.CheckOverlap(position,obstacleRadius);
+            }
+             transform.position = position;
+             activeAsteroid.SetActive(true);
+             health = healthReset;
+             fallSpeed = Random.Range(fallSpeedX, fallSpeedY);
+        }
+    }
+    void ActivateAsteroid(GameObject ObjToActivate, GameObject ObjToDeactive)
+    {
+        ObjToActivate.SetActive(true);
+        ObjToDeactive.SetActive(false);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Projectile")
+        {
+            int damage = collision.gameObject.GetComponent<Projectile>().projectileDamage;
+            health -= damage;
+       
+           
+        }
+       
+    }
+}
 
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(position, obstacleRadius);
+/*       //  Debug.Log("Asteroid has collided with something : " + collision);
+            //sprite renderers were not deactivating every time - Update
+
+ *   // gameObject.SetActive(true);
+ *  //    Debug.Log("Health is being decreased by : " + damage + ".  Health is now :" + health);
+
+            //if(collision.gameObject.name == "PowerUpBigShooter") { }
+           // health -= 5;
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * Collider2D[] colliders = Physics2D.OverlapCircleAll(position, obstacleRadius);
                // Debug.Log("Spawn attempt:  - "+spawnAttempts+" . . . " + gameObject.name);
                 foreach (Collider2D col in colliders)
                 {
@@ -113,34 +162,4 @@ public class AsteroidObjScript : MonoBehaviour
                         validPosition = false;
                     //    Debug.Log("overLap detected");
                     }
-                }
-            }
-
-          
-                transform.position = position;
-                activeAsteroid.SetActive(true);
-            
-           
-            health = healthReset;
-
-            fallSpeed = Random.Range(fallSpeedX, fallSpeedY);
-
-
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Projectile")
-        {
-            int damage = collision.gameObject.GetComponent<Projectile>().projectileDamage;
-            health -= damage;
-        //    Debug.Log("Health is being decreased by : " + damage + ".  Health is now :" + health);
-
-            //if(collision.gameObject.name == "PowerUpBigShooter") { }
-           // health -= 5;
-           
-        }
-       
-      //  Debug.Log("Asteroid has collided with something : " + collision);
-    }
-}
+                }*/

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Shooter.Spawning;
 public class DisableShootSpawner : MonoBehaviour
 {
    [SerializeField] GameObject shootDisabler;
@@ -38,7 +38,8 @@ public class DisableShootSpawner : MonoBehaviour
     }
     void SpawnDisabler()
     {
-        Vector2 position = new Vector2(Random.Range(-2.2f, 2.2f), Random.Range(5,11));
+        Vector2 position = AsteroidSpace.RandomPosition(2.2f, 5, 11);
+            //new Vector2(Random.Range(-2.2f, 2.2f), Random.Range(5,11));
         Instantiate(shootDisabler, position, Quaternion.identity);
     }
 }
