@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Shooter.Spawning;
+using Shooter.Player;
 
 
 public class AsteroidObjScript : MonoBehaviour
@@ -123,6 +124,10 @@ public class AsteroidObjScript : MonoBehaviour
              activeAsteroid.SetActive(true);
              health = healthReset;
              fallSpeed = Random.Range(fallSpeedX, fallSpeedY);
+        }
+        if (Player.isDead)
+        {
+            gameObject.SetActive(false);
         }
     }
     void ActivateAsteroid(GameObject ObjToActivate, GameObject ObjToDeactive)

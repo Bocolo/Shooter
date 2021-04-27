@@ -2,133 +2,151 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+
+namespace Shooter.Player
 {
-    public bool isDead = false;
-    [SerializeField] Transform shootPointCenter;
-    [SerializeField] Transform shootPointLeft;
-    [SerializeField] Transform shootPointRight;
-    [SerializeField] Projectile bulletBlue;
-    [SerializeField] Projectile bulletRed;
-    [SerializeField] Projectile bulletLargeBlue;
-    public bool isShootingCenter = true;
-    public bool isShootingLargeBullet = false;
-    public bool isShootingDisabled = false;
-    float shootingDisablerTimer = 0;
-    float powerUpTimer = 0;
-    float powerUpSeconds = 7;
-    float shootingDisablerSeconds = 2;
-  
-    private void Update()
+    public class Player : MonoBehaviour
     {
-        if (Input.GetKeyDown("space") && !isShootingDisabled)
+        public static bool isDead = false;
+        [SerializeField] Transform shootPointCenter;
+        [SerializeField] Transform shootPointLeft;
+        [SerializeField] Transform shootPointRight;
+        [SerializeField] Projectile bulletBlue;
+        [SerializeField] Projectile bulletRed;
+        [SerializeField] Projectile bulletLargeBlue;
+
+        public bool isShootingCenter = true;
+        public bool isShootingLargeBullet = false;
+        public bool isShootingDisabled = false;
+        float shootingDisablerTimer = 0;
+        float powerUpTimer = 0;
+        float powerUpSeconds = 7;
+        float shootingDisablerSeconds = 2;
+
+        private void Update()
         {
-            if (isShootingCenter)
+            if (Input.GetKeyDown("space") && !isShootingDisabled)
             {
-                ShootCenter(!isShootingLargeBullet);
-           
+                if (isShootingCenter)
+                {
+                    ShootCenter(!isShootingLargeBullet);
+
+                }
+                else
+                {
+
+                    ShootSide(shootPointLeft);
+                    ShootSide(shootPointRight);
+                }
             }
-            else
+
+
+            if (!isShootingCenter || isShootingLargeBullet)
             {
-               
-                ShootSide(shootPointLeft);
-                ShootSide(shootPointRight);
+
+                powerUpTimer += Time.deltaTime;
+
+                if (powerUpTimer > powerUpSeconds)
+                {
+
+                    isShootingCenter = true;
+                    isShootingLargeBullet = false;
+                    powerUpTimer = 0;
+
+                }
+            }
+            if (isShootingDisabled)
+            {
+                shootingDisablerTimer += Time.deltaTime;
+                if (shootingDisablerTimer > shootingDisablerSeconds)
+                {
+                    isShootingDisabled = false;
+                    shootingDisablerTimer = 0;
+                }
             }
         }
-       
-       
-        if (!isShootingCenter || isShootingLargeBullet)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
 
-            powerUpTimer += Time.deltaTime;
-          
-            if (powerUpTimer > powerUpSeconds)
+            if (collision.gameObject.tag == "asteroid")
             {
-          
-                isShootingCenter = true;
+                Die();
+                gameObject.SetActive(false);
+                GameManager.instance.GameOver();
+            }
+            if (collision.gameObject.tag == "shooterSwitch")
+            {
+                isShootingCenter = false;
                 isShootingLargeBullet = false;
-                powerUpTimer = 0;
-          
             }
-        }
-        if (isShootingDisabled)
-        {
-            shootingDisablerTimer += Time.deltaTime;
-            if(shootingDisablerTimer> shootingDisablerSeconds)
+            if (collision.gameObject.tag == "PowerUp")
             {
-                isShootingDisabled = false;
-                shootingDisablerTimer = 0;
+                isShootingLargeBullet = true;
+                isShootingCenter = true;
+            }
+            if (collision.gameObject.tag == "DisableShooting")
+            {
+                isShootingDisabled = true;
             }
         }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-     
-        if (collision.gameObject.tag == "asteroid")
-        {
-            Die();
-        }
-        if (collision.gameObject.tag == "shooterSwitch")
-        {
-            isShootingCenter = false;
-            isShootingLargeBullet = false;
-        }
-        if (collision.gameObject.tag == "PowerUp")
-        {
-            isShootingLargeBullet = true;
-            isShootingCenter = true;
-        }
-        if (collision.gameObject.tag == "DisableShooting")
-        {
-            isShootingDisabled = true;
-        }
-    }
- 
 
-    void Die()
-    {
-        isDead = true;
-    }
-    private void ShootCenter(bool isSmall)
-    {
-        if (isSmall) 
+
+        void Die()
         {
-            GameObject smallProjectile = ProjectileManager.instance.GetPooledBlueSmall();
-            Debug.Log("Small Projectile is trying to be shot");
-            if (smallProjectile != null)
+            isDead = true;
+        }
+        private void ShootCenter(bool isSmall)
+        {
+            if (isSmall)
             {
-                smallProjectile.transform.position = shootPointCenter.position;
-                smallProjectile.transform.rotation = Quaternion.identity;
-                Debug.Log("Small Projectils is being activaes");
-                smallProjectile.SetActive(true);
+                GameObject smallProjectile = ProjectileManager.instance.GetPooledBlueSmall();
+                Debug.Log("Small Projectile is trying to be shot");
+                if (smallProjectile != null)
+                {
+                    smallProjectile.transform.position = shootPointCenter.position;
+                    smallProjectile.transform.rotation = Quaternion.identity;
+                    Debug.Log("Small Projectils is being activaes");
+                    smallProjectile.SetActive(true);
+                }
+            }
+            if (!isSmall)
+            {
+                GameObject largeProjectile = ProjectileManager.instance.GetPooledBlueLarge();
+                if (largeProjectile != null)
+                {
+                    largeProjectile.transform.position = shootPointCenter.position;
+                    largeProjectile.transform.rotation = Quaternion.identity;
+                    Debug.Log("Large Projectils is being activaes");
+                    largeProjectile.SetActive(true);
+                }
             }
         }
-        if (!isSmall)
+        private void ShootSide(Transform shootPoint)
         {
-            GameObject largeProjectile = ProjectileManager.instance.GetPooledBlueLarge();
-            if (largeProjectile != null)
+            GameObject redProjectile = ProjectileManager.instance.GetPooledRed();
+            if (redProjectile != null)
             {
-                largeProjectile.transform.position = shootPointCenter.position;
-                largeProjectile.transform.rotation = Quaternion.identity;
-                Debug.Log("Large Projectils is being activaes");
-                largeProjectile.SetActive(true);
+                redProjectile.transform.position = shootPoint.position;
+                redProjectile.transform.rotation = Quaternion.identity;
+                Debug.Log("Small Projectils1 is being activaes");
+                redProjectile.SetActive(true);
             }
         }
+
+
     }
-    private void ShootSide(Transform shootPoint)
-    {
-        GameObject redProjectile = ProjectileManager.instance.GetPooledRed();
-        if (redProjectile != null)
-        {
-            redProjectile.transform.position = shootPoint.position;
-            redProjectile.transform.rotation = Quaternion.identity;
-            Debug.Log("Small Projectils1 is being activaes");
-            redProjectile.SetActive(true);
-        }
-    }
+
 
 
 }
+
+
+
+
+
+
+
+
 /*
  * 
  *     private void ShootSideRight()

@@ -657,7 +657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbbdd3296eae006479cd8b727366cd55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDead: 0
   shootPointCenter: {fileID: 1322721417}
   shootPointLeft: {fileID: 1194123652}
   shootPointRight: {fileID: 1509904139}
@@ -1316,7 +1315,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'You Died '
+  m_Text: 
 --- !u!222 &606488282
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1338,7 +1337,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathText: {fileID: 606488281}
-  player: {fileID: 242272496}
 --- !u!1001 &627548268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2721,7 +2719,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 45
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2828,6 +2826,7 @@ GameObject:
   - component: {fileID: 1327836628}
   - component: {fileID: 1327836629}
   - component: {fileID: 1327836630}
+  - component: {fileID: 1327836631}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3010,6 +3009,19 @@ MonoBehaviour:
   smallBlueProjectilToPool: {fileID: 1019480334022894}
   largeBlueProjectilToPool: {fileID: 1019480179575257}
   amountToPool: 80
+--- !u!114 &1327836631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1327836625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5737eab6921b394e8e6a3bee818aa4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restartDelay: 2
 --- !u!1 &1338871751 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 72295631480350893, guid: 73d0578dde8635c4db633cbe78f8af97,
