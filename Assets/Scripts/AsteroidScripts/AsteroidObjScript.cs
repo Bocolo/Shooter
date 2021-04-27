@@ -56,25 +56,17 @@ public class AsteroidObjScript : MonoBehaviour
             if (health < 30  && hugeAsteroid.activeSelf)
             {
                 ActivateAsteroid(largeAsteroid, hugeAsteroid);
-           /*     largeAsteroid.SetActive(true);
-                hugeAsteroid.SetActive(false);*/
-
+         
             }
 
             if (health < 21  && largeAsteroid.activeSelf)
             {
                 ActivateAsteroid(mediumAsteroid, largeAsteroid);
-              /*  mediumAsteroid.SetActive(true);
-                largeAsteroid.SetActive(false);
-*/
-            }
+             }
             if (health < 11  && mediumAsteroid.activeSelf)
             {
 
                 ActivateAsteroid(smallAsteroid, mediumAsteroid);
-               /* smallAsteroid.SetActive(true);
-                mediumAsteroid.SetActive(false);*/
-
             }
         }
         if (getsBigger)
@@ -82,7 +74,7 @@ public class AsteroidObjScript : MonoBehaviour
             if (health < 11 && smallAsteroid.activeSelf)
             {
                 ActivateAsteroid(mediumAsteroid, smallAsteroid);
-               }
+            }
 
         
         }
@@ -92,11 +84,10 @@ public class AsteroidObjScript : MonoBehaviour
             {
                 smallAsteroid.SetActive(false);
             }
-           // scoreTracker.score += scoreForDestruction;
+           
             GameManager.instance.score += scoreForDestruction;
             hasExploded = true;
-            Debug.Log(" This has exploded :    -score fro destruction ; "+ scoreForDestruction);
-            
+          
             
         }
         
@@ -149,28 +140,3 @@ public class AsteroidObjScript : MonoBehaviour
     }
 }
 
-/*       //  Debug.Log("Asteroid has collided with something : " + collision);
-            //sprite renderers were not deactivating every time - Update
-
- *   // gameObject.SetActive(true);
- *  //    Debug.Log("Health is being decreased by : " + damage + ".  Health is now :" + health);
-
-            //if(collision.gameObject.name == "PowerUpBigShooter") { }
-           // health -= 5;
- * 
- * 
- * 
- * 
- * 
- * 
- * Collider2D[] colliders = Physics2D.OverlapCircleAll(position, obstacleRadius);
-               // Debug.Log("Spawn attempt:  - "+spawnAttempts+" . . . " + gameObject.name);
-                foreach (Collider2D col in colliders)
-                {
-                   // Debug.Log("Collison detected - - > " + col);
-                    if (col.tag == "asteroid")
-                    {
-                        validPosition = false;
-                    //    Debug.Log("overLap detected");
-                    }
-                }*/

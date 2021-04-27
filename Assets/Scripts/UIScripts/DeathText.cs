@@ -6,15 +6,8 @@ using Shooter.Player;
 
 public class DeathText : MonoBehaviour
 {
-    public Text deathText;
+    [SerializeField] Text deathText;
 
-    //[SerializeField] Player player;
-   // Player player;
-   
-  /*  private void Start()
-    {
-        deathText.text = "You are alive";
-    }*/
     private void Update()
     {
         if (Player.isDead)

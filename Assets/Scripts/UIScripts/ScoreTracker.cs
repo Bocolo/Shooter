@@ -7,16 +7,15 @@ using UnityEngine.UI;
 
     public class ScoreTracker : MonoBehaviour
     {
-        public int score=0;
-        public Text scoreText;
-        public Text highScoreText;
+        
+        [SerializeField] Text scoreText;
+        [SerializeField] Text highScoreText;
 
     private void Start()
     {
-       // score = 0;
-        
-        scoreText.text = "this is test text";
-        highScoreText.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
+   
+       
+        highScoreText.text = "Highscore: " +PlayerPrefs.GetInt("HighScore", 0).ToString();
     }
     private void LateUpdate()
         {

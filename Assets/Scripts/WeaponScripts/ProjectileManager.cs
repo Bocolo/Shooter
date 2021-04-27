@@ -5,12 +5,12 @@ using UnityEngine;
 public class ProjectileManager : MonoBehaviour
 {
     public static ProjectileManager instance = null;
-   public List<GameObject> pooledSmallBlueProjectiles;
-    public List<GameObject> pooledLargeBlueProjectiles;
-    public List<GameObject> pooledSmallRedProjectiles;
-    public GameObject smallRedProjectilToPool;
-    public GameObject smallBlueProjectilToPool;
-    public GameObject largeBlueProjectilToPool;
+    List<GameObject> pooledSmallBlueProjectiles;
+    List<GameObject> pooledLargeBlueProjectiles;
+    List<GameObject> pooledSmallRedProjectiles;
+    [SerializeField] GameObject smallRedProjectilToPool;
+    [SerializeField] GameObject smallBlueProjectilToPool;
+    [SerializeField] GameObject largeBlueProjectilToPool;
     public int amountToPool = 200;
 
     private void Awake()
@@ -69,11 +69,4 @@ public class ProjectileManager : MonoBehaviour
     }
 }
 
-      /* for(int i=0; i<pooledSmallRedProjectiles.Count; i++)
-        {
-            if (!pooledSmallRedProjectiles[i].activeInHierarchy)
-            {
-                return pooledSmallRedProjectiles[i];
-            }
-        }
-        return null;*/
+     

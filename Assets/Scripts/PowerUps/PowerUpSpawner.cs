@@ -22,14 +22,14 @@ public class PowerUpSpawner : MonoBehaviour
     }
     private void Update()
     {
-        if (scoreTracker.score >= targetScoreSwitcher)
+        if (GameManager.instance.score >= targetScoreSwitcher)
         {
        
             targetScoreSwitcher += targetScoreSwitcher;
             SpawnPowerUp(shooterSwitcher);
             powerUpSpawnCount++;
         }
-        if (scoreTracker.score >= targetScoreLarger)
+        if (GameManager.instance.score >= targetScoreLarger)
         {
       
             targetScoreLarger += targetScoreLarger;

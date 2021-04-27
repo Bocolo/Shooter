@@ -13,7 +13,7 @@ public class DisableShootSpawner : MonoBehaviour
     private void Start()
     {
         timer = 0;
-        //targetScoreToDisable ;
+      
         scoreIncreaser = targetScoreToDisable;
         powerUpSpawner = GetComponent<PowerUpSpawner>();
     }
@@ -31,15 +31,11 @@ public class DisableShootSpawner : MonoBehaviour
                 targetScoreToDisable += scoreIncreaser;
             }
         }
-      /*  if (powerUpSpawner.powerUpSpawnCount ==1)
-        {
-            Debug.Log(powerUpSpawner.powerUpSpawnCount);
-        }*/
+    
     }
     void SpawnDisabler()
     {
         Vector2 position = AsteroidSpace.RandomPosition(2.2f, 5, 25);
-            //new Vector2(Random.Range(-2.2f, 2.2f), Random.Range(5,11));
         Instantiate(shootDisabler, position, Quaternion.identity);
     }
 }

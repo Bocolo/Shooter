@@ -306,7 +306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecca7f88898dbb94ebee24c7fa248fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSpeed: 4
+  fallSpeedMin: 4
+  fallSpeedMax: 6
   fallY: -6
 --- !u!1001 &156288190
 PrefabInstance:
@@ -511,12 +512,6 @@ MonoBehaviour:
   shootPointCenter: {fileID: 1322721417}
   shootPointLeft: {fileID: 1194123652}
   shootPointRight: {fileID: 1509904139}
-  bulletBlue: {fileID: 7551052335844366090, guid: 0a81b9d5df66f6047bb3db16611f0580,
-    type: 3}
-  bulletRed: {fileID: 5244063435805131518, guid: c603681945120244c81464d80a8e5eab,
-    type: 3}
-  bulletLargeBlue: {fileID: 3305937101666918168, guid: 0d59bbdb95b70414c8651f17cf807625,
-    type: 3}
   isShootingCenter: 1
   isShootingLargeBullet: 0
   isShootingDisabled: 0
@@ -1262,7 +1257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecca7f88898dbb94ebee24c7fa248fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSpeed: 4
+  fallSpeedMin: 4
+  fallSpeedMax: 6
   fallY: -6
 --- !u!61 &765428526
 BoxCollider2D:
@@ -1857,7 +1853,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecca7f88898dbb94ebee24c7fa248fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSpeed: 4
+  fallSpeedMin: 4
+  fallSpeedMax: 6
   fallY: -6
 --- !u!61 &1270817502
 BoxCollider2D:
@@ -2072,89 +2069,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2a621449211fb429b06cde1f8c31bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledSmallBlueProjectiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  pooledLargeBlueProjectiles: []
-  pooledSmallRedProjectiles: []
   smallRedProjectilToPool: {fileID: 5243259260839812019, guid: c603681945120244c81464d80a8e5eab,
     type: 3}
   smallBlueProjectilToPool: {fileID: 7550607077780310376, guid: 0a81b9d5df66f6047bb3db16611f0580,
@@ -2708,7 +2622,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c17904ffddeb164496885e5cb4eec7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
   scoreText: {fileID: 0}
   highScoreText: {fileID: 0}
 --- !u!1001 &1796501359

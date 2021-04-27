@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackgroundSroll : MonoBehaviour
 {
-    public float scrollSpeed = 0f;
+    [SerializeField] float scrollSpeed = 0f;
   
     private void Update()
     {

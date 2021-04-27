@@ -6,8 +6,8 @@ using Shooter.Spawning;
 public class AsteroidsScript : MonoBehaviour
 {
 
-    public GameObject[] asteroids;
-    public int maxSpawnAttempts = 10;
+    [SerializeField] GameObject[] asteroids;
+    [SerializeField] int maxSpawnAttempts = 10;
     [SerializeField] int obstacleRadius =3;
 
     
@@ -30,7 +30,6 @@ public class AsteroidsScript : MonoBehaviour
                 spawnAttempts++;
 
                 position = AsteroidSpace.RandomPosition(2.4f, 7, 30);
-                    // new Vector2(Random.Range(-2.2f, 2.2f), Random.Range(7, 30));
               
                 validPosition = AsteroidSpace.CheckOverlap(position, obstacleRadius);
             }
@@ -39,18 +38,3 @@ public class AsteroidsScript : MonoBehaviour
     }
     
 }
-/* 
- *   //  validPosition = true;
- * Collider2D[] colliders = Physics2D.OverlapCircleAll(position, obstacleRadius);
-             foreach(Collider2D col in colliders)
-             {
-                 if (col.tag == "asteroid")
-                 {
-
-                     validPosition = false;
-                 }
-             }*/
-
-
-
-

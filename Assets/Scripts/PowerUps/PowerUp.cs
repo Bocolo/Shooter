@@ -6,9 +6,15 @@ public class PowerUp : MonoBehaviour
 {
 
   
-    public float fallSpeed =1;
-    public float fallY = -6;
-    
+    [SerializeField] float fallSpeedMin =1;
+    [SerializeField] float fallSpeedMax = 5;
+    float fallSpeed;
+    [SerializeField] float fallY = -6;
+
+    private void Start()
+    {
+        fallSpeed = Random.Range(fallSpeedMin,fallSpeedMax);
+    }
     private void Update()
     {
 
@@ -16,16 +22,16 @@ public class PowerUp : MonoBehaviour
        
         if(transform.position.y < fallY)
         {
-         //   gameObject.SetActive(false);
+      
             Destroy(gameObject);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("power up trigger");
+        
         if (collision.gameObject.tag == "Player")
         {
-           // player.isShootingCenter = false;
+           
             Destroy(gameObject);
         }
     }
